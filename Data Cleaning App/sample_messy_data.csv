@@ -1,0 +1,7 @@
+name,age,score,extra_column
+Ali,20,88,x
+Sara,twenty-two,92,None
+None,19,None,y
+John,None,75,z
+Ayesha,23,eighty,None
+Bob,??,60,random

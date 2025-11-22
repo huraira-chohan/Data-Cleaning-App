@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  dataclean:
+    build: .
+    image: data-clean-app:latest
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_HEADLESS=true
+      - STREAMLIT_SERVER_PORT=8501
+    volumes:
+      - ./:/app:rw
+    restart: unless-stopped
+  health:
+    image: data-clean-app:latest
+    depends_on:
+      - dataclean
+    command: ["uvicorn", "health_app:app", "--host", "0.0.0.0", "--port", "8000"]
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
